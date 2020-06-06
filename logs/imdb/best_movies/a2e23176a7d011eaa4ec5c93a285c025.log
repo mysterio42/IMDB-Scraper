@@ -1,0 +1,946 @@
+2020-06-06 12:35:14 [scrapy.utils.log] INFO: Scrapy 2.1.0 started (bot: imdb)
+2020-06-06 12:35:14 [scrapy.utils.log] INFO: Versions: lxml 4.5.0.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 20.3.0, Python 3.6.4 (default, Mar 26 2018, 16:54:20) - [GCC 5.4.0 20160609], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Linux-5.3.0-53-generic-x86_64-with-debian-buster-sid
+2020-06-06 12:35:14 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.epollreactor.EPollReactor
+2020-06-06 12:35:14 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'imdb',
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'LOG_FILE': 'logs/imdb/best_movies/a2e23176a7d011eaa4ec5c93a285c025.log',
+ 'NEWSPIDER_MODULE': 'imdb.spiders',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['imdb.spiders']}
+2020-06-06 12:35:15 [scrapy.extensions.telnet] INFO: Telnet Password: 92f35abd1e673518
+2020-06-06 12:35:15 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2020-06-06 12:35:15 [py.warnings] WARNING: /home/fontana/venvs/crawlenv/lib/python3.6/site-packages/scrapy/spiders/crawl.py:135: ScrapyDeprecationWarning: Rule.process_request should accept two arguments (request, response), accepting only one is deprecated
+  self._rules[-1]._compile(self)
+
+2020-06-06 12:35:15 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-06-06 12:35:15 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-06-06 12:35:15 [scrapy.middleware] INFO: Enabled item pipelines:
+['imdb.pipelines.MongodbPipeline']
+2020-06-06 12:35:15 [scrapy.core.engine] INFO: Spider opened
+2020-06-06 12:35:15 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-06-06 12:35:15 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-06-06 12:35:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/robots.txt> (referer: None)
+2020-06-06 12:35:17 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?groups=top_250&sort=user_rating> (referer: None)
+2020-06-06 12:35:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0111161/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:48 [scrapy.core.scraper] ERROR: Error processing {'title': 'The Shawshank Redemption\xa0', 'year': '1994', 'duration': '2h 22min', 'genre': 'Drama', 'rating': '9.3', 'movie_url': 'https://www.imdb.com/title/tt0111161/?ref_=adv_li_tt', '_id': ObjectId('5edb5546d861b9b16e15fe90')}
+Traceback (most recent call last):
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/fontana/PychramProjects/imdb/imdb/pipelines.py", line 15, in process_item
+    self.db[self.collection_name].insert(item)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 3182, in insert
+    check_keys, manipulate, write_concern)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 612, in _insert
+    bypass_doc_val, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 600, in _insert_one
+    acknowledged, _insert_command, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1490, in _retryable_write
+    with self._tmp_session(session) as s:
+  File "/usr/local/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1823, in _tmp_session
+    s = self._ensure_session(session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 485, in get_server_session
+    None)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [Errno 111] Connection refused
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0133093/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0080684/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0073486/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0099685/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0167261/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120737/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0060196/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:35:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0109830/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:36:19 [scrapy.core.scraper] ERROR: Error processing {'title': 'The Matrix\xa0', 'year': '1999', 'duration': '2h 16min', 'genre': 'Action', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0133093/?ref_=adv_li_tt', '_id': ObjectId('5edb5565d861b9b16e15fe91')}
+Traceback (most recent call last):
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/fontana/PychramProjects/imdb/imdb/pipelines.py", line 15, in process_item
+    self.db[self.collection_name].insert(item)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 3182, in insert
+    check_keys, manipulate, write_concern)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 612, in _insert
+    bypass_doc_val, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 600, in _insert_one
+    acknowledged, _insert_command, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1490, in _retryable_write
+    with self._tmp_session(session) as s:
+  File "/usr/local/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1823, in _tmp_session
+    s = self._ensure_session(session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 485, in get_server_session
+    None)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [Errno 111] Connection refused
+2020-06-06 12:36:50 [scrapy.core.scraper] ERROR: Error processing {'title': 'Star Wars: Episode V - The Empire Strikes Back\xa0', 'year': '1980', 'duration': '2h 4min', 'genre': 'Action', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0080684/?ref_=adv_li_tt', '_id': ObjectId('5edb5583d861b9b16e15fe92')}
+Traceback (most recent call last):
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/fontana/PychramProjects/imdb/imdb/pipelines.py", line 15, in process_item
+    self.db[self.collection_name].insert(item)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 3182, in insert
+    check_keys, manipulate, write_concern)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 612, in _insert
+    bypass_doc_val, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 600, in _insert_one
+    acknowledged, _insert_command, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1490, in _retryable_write
+    with self._tmp_session(session) as s:
+  File "/usr/local/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1823, in _tmp_session
+    s = self._ensure_session(session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 485, in get_server_session
+    None)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [Errno 111] Connection refused
+2020-06-06 12:36:50 [scrapy.extensions.logstats] INFO: Crawled 11 pages (at 11 pages/min), scraped 0 items (at 0 items/min)
+2020-06-06 12:37:20 [scrapy.core.scraper] ERROR: Error processing {'title': "One Flew Over the Cuckoo's Nest\xa0", 'year': '1975', 'duration': '2h 13min', 'genre': 'Drama', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0073486/?ref_=adv_li_tt', '_id': ObjectId('5edb55a2d861b9b16e15fe93')}
+Traceback (most recent call last):
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/twisted/internet/defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/scrapy/utils/defer.py", line 154, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "/home/fontana/PychramProjects/imdb/imdb/pipelines.py", line 15, in process_item
+    self.db[self.collection_name].insert(item)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 3182, in insert
+    check_keys, manipulate, write_concern)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 612, in _insert
+    bypass_doc_val, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/collection.py", line 600, in _insert_one
+    acknowledged, _insert_command, session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1490, in _retryable_write
+    with self._tmp_session(session) as s:
+  File "/usr/local/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1823, in _tmp_session
+    s = self._ensure_session(session)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1810, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1763, in __start_session
+    server_session = self._get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1796, in _get_server_session
+    return self._topology.get_server_session()
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 485, in get_server_session
+    None)
+  File "/home/fontana/venvs/crawlenv/lib/python3.6/site-packages/pymongo/topology.py", line 209, in _select_servers_loop
+    self._error_message(selector))
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [Errno 111] Connection refused
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0099685/?ref_=adv_li_tt>
+{'title': 'Goodfellas\xa0', 'year': '1990', 'duration': '2h 26min', 'genre': 'Biography', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0099685/?ref_=adv_li_tt', '_id': ObjectId('5edb55c0d861b9b16e15fe94')}
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0137523/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1375666/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0050083/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0108052/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0110912/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0167260/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0167261/?ref_=adv_li_tt>
+{'title': 'The Lord of the Rings: The Two Towers\xa0', 'year': '2002', 'duration': '2h 59min', 'genre': 'Adventure', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0167261/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe95')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120737/?ref_=adv_li_tt>
+{'title': 'The Lord of the Rings: The Fellowship of the Ring\xa0', 'year': '2001', 'duration': '2h 58min', 'genre': 'Action', 'rating': '8.8', 'movie_url': 'https://www.imdb.com/title/tt0120737/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe96')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0060196/?ref_=adv_li_tt>
+{'title': 'The Good, the Bad and the Ugly\xa0', 'year': '1966', 'duration': '2h 58min', 'genre': 'Western', 'rating': '8.8', 'movie_url': 'https://www.imdb.com/title/tt0060196/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe97')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0109830/?ref_=adv_li_tt>
+{'title': 'Forrest Gump\xa0', 'year': '1994', 'duration': '2h 22min', 'genre': 'Drama', 'rating': '8.8', 'movie_url': 'https://www.imdb.com/title/tt0109830/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe98')}
+2020-06-06 12:37:38 [scrapy.extensions.logstats] INFO: Crawled 17 pages (at 6 pages/min), scraped 5 items (at 5 items/min)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0071562/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0137523/?ref_=adv_li_tt>
+{'title': 'Fight Club\xa0', 'year': '1999', 'duration': '2h 19min', 'genre': 'Drama', 'rating': '8.8', 'movie_url': 'https://www.imdb.com/title/tt0137523/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe99')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1375666/?ref_=adv_li_tt>
+{'title': 'Inception\xa0', 'year': '2010', 'duration': '2h 28min', 'genre': 'Action', 'rating': '8.8', 'movie_url': 'https://www.imdb.com/title/tt1375666/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9a')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0050083/?ref_=adv_li_tt>
+{'title': '12 Angry Men\xa0', 'year': '1957', 'duration': '1h 36min', 'genre': 'Crime', 'rating': '8.9', 'movie_url': 'https://www.imdb.com/title/tt0050083/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9b')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0108052/?ref_=adv_li_tt>
+{'title': "Schindler's List\xa0", 'year': '1993', 'duration': '3h 15min', 'genre': 'Biography', 'rating': '8.9', 'movie_url': 'https://www.imdb.com/title/tt0108052/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9c')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0110912/?ref_=adv_li_tt>
+{'title': 'Pulp Fiction\xa0', 'year': '1994', 'duration': '2h 34min', 'genre': 'Crime', 'rating': '8.9', 'movie_url': 'https://www.imdb.com/title/tt0110912/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9d')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0167260/?ref_=adv_li_tt>
+{'title': 'The Lord of the Rings: The Return of the King\xa0', 'year': '2003', 'duration': '3h 21min', 'genre': 'Adventure', 'rating': '8.9', 'movie_url': 'https://www.imdb.com/title/tt0167260/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9e')}
+2020-06-06 12:37:38 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0071562/?ref_=adv_li_tt>
+{'title': 'The Godfather: Part II\xa0', 'year': '1974', 'duration': '3h 22min', 'genre': 'Crime', 'rating': '9.0', 'movie_url': 'https://www.imdb.com/title/tt0071562/?ref_=adv_li_tt', '_id': ObjectId('5edb55d2d861b9b16e15fe9f')}
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0110413/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0064116/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0095765/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0088763/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0110413/?ref_=adv_li_tt>
+{'title': 'Léon: The Professional\xa0', 'year': '1994', 'duration': '1h 50min', 'genre': 'Action', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0110413/?ref_=adv_li_tt', '_id': ObjectId('5edb55d3d861b9b16e15fea0')}
+2020-06-06 12:37:39 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0064116/?ref_=adv_li_tt>
+{'title': 'Once Upon a Time in the West\xa0', 'year': '1968', 'duration': '2h 45min', 'genre': 'Western', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0064116/?ref_=adv_li_tt', '_id': ObjectId('5edb55d3d861b9b16e15fea1')}
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0095327/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0095765/?ref_=adv_li_tt>
+{'title': 'Cinema Paradiso\xa0', 'year': '1988', 'duration': '2h 35min', 'genre': 'Drama', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0095765/?ref_=adv_li_tt', '_id': ObjectId('5edb55d3d861b9b16e15fea2')}
+2020-06-06 12:37:39 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0088763/?ref_=adv_li_tt>
+{'title': 'Back to the Future\xa0', 'year': '1985', 'duration': '1h 56min', 'genre': 'Adventure', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0088763/?ref_=adv_li_tt', '_id': ObjectId('5edb55d3d861b9b16e15fea3')}
+2020-06-06 12:37:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0057565/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:39 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0095327/?ref_=adv_li_tt>
+{'title': 'Grave of the Fireflies\xa0', 'year': '1988', 'duration': '1h 29min', 'genre': 'Animation', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0095327/?ref_=adv_li_tt', '_id': ObjectId('5edb55d3d861b9b16e15fea4')}
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0103064/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0057565/?ref_=adv_li_tt>
+{'title': 'High and Low\xa0', 'year': '1963', 'duration': '2h 23min', 'genre': 'Crime', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0057565/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15fea5')}
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0103064/?ref_=adv_li_tt>
+{'title': 'Terminator 2: Judgment Day\xa0', 'year': '1991', 'duration': '2h 17min', 'genre': 'Action', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0103064/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15fea6')}
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0110357/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0110357/?ref_=adv_li_tt>
+{'title': 'The Lion King\xa0', 'year': '1994', 'duration': '1h 28min', 'genre': 'Animation', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0110357/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15fea7')}
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120586/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0114814/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120586/?ref_=adv_li_tt>
+{'title': 'American History X\xa0', 'year': '1998', 'duration': '1h 59min', 'genre': 'Drama', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0120586/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15fea8')}
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0253474/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0114814/?ref_=adv_li_tt>
+{'title': 'The Usual Suspects\xa0', 'year': '1995', 'duration': '1h 46min', 'genre': 'Crime', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0114814/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15fea9')}
+2020-06-06 12:37:40 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0253474/?ref_=adv_li_tt>
+{'title': 'The Pianist\xa0', 'year': '2002', 'duration': '2h 30min', 'genre': 'Biography', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0253474/?ref_=adv_li_tt', '_id': ObjectId('5edb55d4d861b9b16e15feaa')}
+2020-06-06 12:37:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0407887/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0172495/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0482571/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1675434/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:41 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0407887/?ref_=adv_li_tt>
+{'title': 'The Departed\xa0', 'year': '2006', 'duration': '2h 31min', 'genre': 'Crime', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0407887/?ref_=adv_li_tt', '_id': ObjectId('5edb55d5d861b9b16e15feab')}
+2020-06-06 12:37:41 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0172495/?ref_=adv_li_tt>
+{'title': 'Gladiator\xa0', 'year': '2000', 'duration': '2h 35min', 'genre': 'Action', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0172495/?ref_=adv_li_tt', '_id': ObjectId('5edb55d5d861b9b16e15feac')}
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:41 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0482571/?ref_=adv_li_tt>
+{'title': 'The Prestige\xa0', 'year': '2006', 'duration': '2h 10min', 'genre': 'Drama', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0482571/?ref_=adv_li_tt', '_id': ObjectId('5edb55d5d861b9b16e15fead')}
+2020-06-06 12:37:41 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1675434/?ref_=adv_li_tt>
+{'title': 'The Intouchables\xa0', 'year': '2011', 'duration': '1h 52min', 'genre': 'Biography', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt1675434/?ref_=adv_li_tt', '_id': ObjectId('5edb55d5d861b9b16e15feae')}
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2582802/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:37:41 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2582802/?ref_=adv_li_tt>
+{'title': 'Whiplash\xa0', 'year': '2014', 'duration': '1h 46min', 'genre': 'Drama', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt2582802/?ref_=adv_li_tt', '_id': ObjectId('5edb55d5d861b9b16e15feaf')}
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0105236/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0093058/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0105236/?ref_=adv_li_tt>
+{'title': 'Reservoir Dogs\xa0', 'year': '1992', 'duration': '1h 39min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0105236/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb0')}
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0093058/?ref_=adv_li_tt>
+{'title': 'Full Metal Jacket\xa0', 'year': '1987', 'duration': '1h 56min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0093058/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb1')}
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0114709/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0116231/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0119217/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0112573/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0118849/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0114709/?ref_=adv_li_tt>
+{'title': 'Toy Story\xa0', 'year': '1995', 'duration': '1h 21min', 'genre': 'Animation', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0114709/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb2')}
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0116231/?ref_=adv_li_tt>
+{'title': 'The Bandit\xa0', 'year': '1996', 'duration': '2h 8min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0116231/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb3')}
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0119217/?ref_=adv_li_tt>
+{'title': 'Good Will Hunting\xa0', 'year': '1997', 'duration': '2h 6min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0119217/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb4')}
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0112573/?ref_=adv_li_tt>
+{'title': 'Braveheart\xa0', 'year': '1995', 'duration': '2h 58min', 'genre': 'Biography', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0112573/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb5')}
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0118849/?ref_=adv_li_tt>
+{'title': 'Children of Heaven\xa0', 'year': '1997', 'duration': '1h 29min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0118849/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb6')}
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0169547/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:42 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0169547/?ref_=adv_li_tt>
+{'title': 'American Beauty\xa0', 'year': '1999', 'duration': '2h 2min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0169547/?ref_=adv_li_tt', '_id': ObjectId('5edb55d6d861b9b16e15feb7')}
+2020-06-06 12:37:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0208092/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0180093/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0208092/?ref_=adv_li_tt>
+{'title': 'Snatch\xa0', 'year': '2000', 'duration': '1h 42min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0208092/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15feb8')}
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0180093/?ref_=adv_li_tt>
+{'title': 'Requiem for a Dream\xa0', 'year': '2000', 'duration': '1h 42min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0180093/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15feb9')}
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0211915/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0476735/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0211915/?ref_=adv_li_tt>
+{'title': 'Amélie\xa0', 'year': '2001', 'duration': '2h 2min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0211915/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15feba')}
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0476735/?ref_=adv_li_tt>
+{'title': 'My Father and My Son\xa0', 'year': '2005', 'duration': '1h 52min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0476735/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15febb')}
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0361748/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0361748/?ref_=adv_li_tt>
+{'title': 'Inglourious Basterds\xa0', 'year': '2009', 'duration': '2h 33min', 'genre': 'Adventure', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0361748/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15febc')}
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0435761/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0338013/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0435761/?ref_=adv_li_tt>
+{'title': 'Toy Story 3\xa0', 'year': '2010', 'duration': '1h 43min', 'genre': 'Animation', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0435761/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15febd')}
+2020-06-06 12:37:43 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0338013/?ref_=adv_li_tt>
+{'title': 'Eternal Sunshine of the Spotless Mind\xa0', 'year': '2004', 'duration': '1h 48min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0338013/?ref_=adv_li_tt', '_id': ObjectId('5edb55d7d861b9b16e15febe')}
+2020-06-06 12:37:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0097576/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0096283/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0097576/?ref_=adv_li_tt>
+{'title': 'Indiana Jones and the Last Crusade\xa0', 'year': '1989', 'duration': '2h 7min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0097576/?ref_=adv_li_tt', '_id': ObjectId('5edb55d8d861b9b16e15febf')}
+2020-06-06 12:37:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0096283/?ref_=adv_li_tt>
+{'title': 'My Neighbor Totoro\xa0', 'year': '1988', 'duration': '1h 26min', 'genre': 'Animation', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0096283/?ref_=adv_li_tt', '_id': ObjectId('5edb55d8d861b9b16e15fec0')}
+2020-06-06 12:37:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0105695/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0112641/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0105695/?ref_=adv_li_tt>
+{'title': 'Unforgiven\xa0', 'year': '1992', 'duration': '2h 10min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0105695/?ref_=adv_li_tt', '_id': ObjectId('5edb55d8d861b9b16e15fec1')}
+2020-06-06 12:37:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0112641/?ref_=adv_li_tt>
+{'title': 'Casino\xa0', 'year': '1995', 'duration': '2h 58min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0112641/?ref_=adv_li_tt', '_id': ObjectId('5edb55d8d861b9b16e15fec2')}
+2020-06-06 12:37:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0113277/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:44 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0113277/?ref_=adv_li_tt>
+{'title': 'Heat\xa0', 'year': '1995', 'duration': '2h 50min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0113277/?ref_=adv_li_tt', '_id': ObjectId('5edb55d8d861b9b16e15fec3')}
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0119488/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0268978/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0242519/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120735/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0347149/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0119488/?ref_=adv_li_tt>
+{'title': 'L.A. Confidential\xa0', 'year': '1997', 'duration': '2h 18min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0119488/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec4')}
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0268978/?ref_=adv_li_tt>
+{'title': 'A Beautiful Mind\xa0', 'year': '2001', 'duration': '2h 15min', 'genre': 'Biography', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0268978/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec5')}
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0363163/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0242519/?ref_=adv_li_tt>
+{'title': 'Hera Pheri\xa0', 'year': '2000', 'duration': '2h 36min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0242519/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec6')}
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120735/?ref_=adv_li_tt>
+{'title': 'Lock, Stock and Two Smoking Barrels\xa0', 'year': '1998', 'duration': '1h 47min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0120735/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec7')}
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0367110/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0347149/?ref_=adv_li_tt>
+{'title': "Howl's Moving Castle\xa0", 'year': '2004', 'duration': '1h 59min', 'genre': 'Animation', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0347149/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec8')}
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0363163/?ref_=adv_li_tt>
+{'title': 'Downfall\xa0', 'year': '2004', 'duration': '2h 36min', 'genre': 'Biography', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0363163/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15fec9')}
+2020-06-06 12:37:45 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0367110/?ref_=adv_li_tt>
+{'title': 'Swades\xa0', 'year': '2004', 'duration': '3h 9min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0367110/?ref_=adv_li_tt', '_id': ObjectId('5edb55d9d861b9b16e15feca')}
+2020-06-06 12:37:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0372784/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0372784/?ref_=adv_li_tt>
+{'title': 'Batman Begins\xa0', 'year': '2005', 'duration': '2h 20min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0372784/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fecb')}
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1028532/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0405508/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0353969/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1130884/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0395169/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1028532/?ref_=adv_li_tt>
+{'title': "Hachi: A Dog's Tale\xa0", 'year': '2009', 'duration': '1h 33min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1028532/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fecc')}
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0405508/?ref_=adv_li_tt>
+{'title': 'Rang De Basanti\xa0', 'year': '2006', 'duration': '2h 47min', 'genre': 'Comedy', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0405508/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fecd')}
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0353969/?ref_=adv_li_tt>
+{'title': 'Memories of Murder\xa0', 'year': '2003', 'duration': '2h 12min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0353969/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fece')}
+2020-06-06 12:37:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0405159/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1130884/?ref_=adv_li_tt>
+{'title': 'Shutter Island\xa0', 'year': '2010', 'duration': '2h 18min', 'genre': 'Mystery', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1130884/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fecf')}
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0395169/?ref_=adv_li_tt>
+{'title': 'Hotel Rwanda\xa0', 'year': '2004', 'duration': '2h 1min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0395169/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fed0')}
+2020-06-06 12:37:46 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0405159/?ref_=adv_li_tt>
+{'title': 'Million Dollar Baby\xa0', 'year': '2004', 'duration': '2h 12min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0405159/?ref_=adv_li_tt', '_id': ObjectId('5edb55dad861b9b16e15fed1')}
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0477348/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0477348/?ref_=adv_li_tt>
+{'title': 'No Country for Old Men\xa0', 'year': '2007', 'duration': '2h 2min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0477348/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed2')}
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0758758/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0758758/?ref_=adv_li_tt>
+{'title': 'Into the Wild\xa0', 'year': '2007', 'duration': '2h 28min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0758758/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed3')}
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0978762/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0892769/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0978762/?ref_=adv_li_tt>
+{'title': 'Mary and Max\xa0', 'year': '2009', 'duration': '1h 32min', 'genre': 'Animation', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0978762/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed4')}
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0892769/?ref_=adv_li_tt>
+{'title': 'How to Train Your Dragon\xa0', 'year': '2010', 'duration': '1h 38min', 'genre': 'Animation', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0892769/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed5')}
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1392214/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1201607/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1205489/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1392214/?ref_=adv_li_tt>
+{'title': 'Prisoners\xa0', 'year': '2013', 'duration': '2h 33min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1392214/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed6')}
+2020-06-06 12:37:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1392190/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1201607/?ref_=adv_li_tt>
+{'title': 'Harry Potter and the Deathly Hallows: Part 2\xa0', 'year': '2011', 'duration': '2h 10min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1201607/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed7')}
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1205489/?ref_=adv_li_tt>
+{'title': 'Gran Torino\xa0', 'year': '2008', 'duration': '1h 56min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1205489/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed8')}
+2020-06-06 12:37:47 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1392190/?ref_=adv_li_tt>
+{'title': 'Mad Max: Fury Road\xa0', 'year': '2015', 'duration': '2h', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1392190/?ref_=adv_li_tt', '_id': ObjectId('5edb55dbd861b9b16e15fed9')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1895587/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1895587/?ref_=adv_li_tt>
+{'title': 'Spotlight\xa0', 'year': '2015', 'duration': '2h 9min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1895587/?ref_=adv_li_tt', '_id': ObjectId('5edb55dcd861b9b16e15feda')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1454029/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1454029/?ref_=adv_li_tt>
+{'title': 'The Help\xa0', 'year': '2011', 'duration': '2h 26min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1454029/?ref_=adv_li_tt', '_id': ObjectId('5edb55dcd861b9b16e15fedb')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0266697/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0084787/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0266697/?ref_=adv_li_tt>
+{'title': 'Kill Bill: Vol. 1\xa0', 'year': '2003', 'duration': '1h 51min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0266697/?ref_=adv_li_tt', '_id': ObjectId('5edb55dcd861b9b16e15fedc')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1950186/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0084787/?ref_=adv_li_tt>
+{'title': 'The Thing\xa0', 'year': '1982', 'duration': '1h 49min', 'genre': 'Horror', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0084787/?ref_=adv_li_tt', '_id': ObjectId('5edb55dcd861b9b16e15fedd')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0025316/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:48 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1950186/?ref_=adv_li_tt>
+{'title': 'Ford v Ferrari\xa0', 'year': '2019', 'duration': '2h 32min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1950186/?ref_=adv_li_tt', '_id': ObjectId('5edb55dcd861b9b16e15fede')}
+2020-06-06 12:37:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1979320/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0025316/?ref_=adv_li_tt>
+{'title': 'It Happened One Night\xa0', 'year': '1934', 'duration': '1h 45min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0025316/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fedf')}
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0087544/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0064115/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1979320/?ref_=adv_li_tt>
+{'title': 'Rush\xa0', 'year': '2013', 'duration': '2h 3min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt1979320/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fee0')}
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0087544/?ref_=adv_li_tt>
+{'title': 'Nausicaä of the Valley of the Wind\xa0', 'year': '1984', 'duration': '1h 57min', 'genre': 'Animation', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0087544/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fee1')}
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0064115/?ref_=adv_li_tt>
+{'title': 'Butch Cassidy and the Sundance Kid\xa0', 'year': '1969', 'duration': '1h 50min', 'genre': 'Biography', 'rating': '8.0', 'movie_url': 'https://www.imdb.com/title/tt0064115/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fee2')}
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0088247/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0088247/?ref_=adv_li_tt>
+{'title': 'The Terminator\xa0', 'year': '1984', 'duration': '1h 47min', 'genre': 'Action', 'rating': '8.0', 'movie_url': 'https://www.imdb.com/title/tt0088247/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fee3')}
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0017925/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0198781/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:49 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0017925/?ref_=adv_li_tt>
+{'title': 'The General\xa0', 'year': '1926', 'duration': '1h 7min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0017925/?ref_=adv_li_tt', '_id': ObjectId('5edb55ddd861b9b16e15fee4')}
+2020-06-06 12:37:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0103639/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0198781/?ref_=adv_li_tt>
+{'title': 'Monsters, Inc.\xa0', 'year': '2001', 'duration': '1h 32min', 'genre': 'Animation', 'rating': '8.0', 'movie_url': 'https://www.imdb.com/title/tt0198781/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15fee5')}
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0381681/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0103639/?ref_=adv_li_tt>
+{'title': 'Aladdin\xa0', 'year': '1992', 'duration': '1h 30min', 'genre': 'Animation', 'rating': '8.0', 'movie_url': 'https://www.imdb.com/title/tt0103639/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15fee6')}
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0381681/?ref_=adv_li_tt>
+{'title': 'Before Sunset\xa0', 'year': '2004', 'duration': '1h 20min', 'genre': 'Drama', 'rating': '8.0', 'movie_url': 'https://www.imdb.com/title/tt0381681/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15fee7')}
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0031381/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0031679/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0019254/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0031381/?ref_=adv_li_tt>
+{'title': 'Gone with the Wind\xa0', 'year': '1939', 'duration': '3h 58min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0031381/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15fee8')}
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0031679/?ref_=adv_li_tt>
+{'title': 'Mr. Smith Goes to Washington\xa0', 'year': '1939', 'duration': '2h 9min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0031679/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15fee9')}
+2020-06-06 12:37:50 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0019254/?ref_=adv_li_tt>
+{'title': 'The Passion of Joan of Arc\xa0', 'year': '1928', 'duration': '1h 54min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0019254/?ref_=adv_li_tt', '_id': ObjectId('5edb55ded861b9b16e15feea')}
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0046268/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0047296/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0032976/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0046268/?ref_=adv_li_tt>
+{'title': 'The Wages of Fear\xa0', 'year': '1953', 'duration': '2h 11min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0046268/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15feeb')}
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0047296/?ref_=adv_li_tt>
+{'title': 'On the Waterfront\xa0', 'year': '1954', 'duration': '1h 48min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0047296/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15feec')}
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0050212/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0032976/?ref_=adv_li_tt>
+{'title': 'Rebecca\xa0', 'year': '1940', 'duration': '2h 10min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0032976/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15feed')}
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0041959/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0050212/?ref_=adv_li_tt>
+{'title': 'The Bridge on the River Kwai\xa0', 'year': '1957', 'duration': '2h 41min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0050212/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15feee')}
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0041959/?ref_=adv_li_tt>
+{'title': 'The Third Man\xa0', 'year': '1949', 'duration': '1h 33min', 'genre': 'Film-Noir', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0041959/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15feef')}
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0060107/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0053198/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0060107/?ref_=adv_li_tt>
+{'title': 'Andrei Rublev\xa0', 'year': '1966', 'duration': '3h 25min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0060107/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15fef0')}
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0052618/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0053198/?ref_=adv_li_tt>
+{'title': 'The 400 Blows\xa0', 'year': '1959', 'duration': '1h 39min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0053198/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15fef1')}
+2020-06-06 12:37:51 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0052618/?ref_=adv_li_tt>
+{'title': 'Ben-Hur\xa0', 'year': '1959', 'duration': '3h 32min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0052618/?ref_=adv_li_tt', '_id': ObjectId('5edb55dfd861b9b16e15fef2')}
+2020-06-06 12:37:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0060827/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0072684/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0060827/?ref_=adv_li_tt>
+{'title': 'Persona\xa0', 'year': '1966', 'duration': '1h 23min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0060827/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef3')}
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0072684/?ref_=adv_li_tt>
+{'title': 'Barry Lyndon\xa0', 'year': '1975', 'duration': '3h 5min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0072684/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef4')}
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0074958/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0061512/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0074958/?ref_=adv_li_tt>
+{'title': 'Network\xa0', 'year': '1976', 'duration': '2h 1min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0074958/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef5')}
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0061512/?ref_=adv_li_tt>
+{'title': 'Cool Hand Luke\xa0', 'year': '1967', 'duration': '2h 7min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0061512/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef6')}
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0075148/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0079470/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0075148/?ref_=adv_li_tt>
+{'title': 'Rocky\xa0', 'year': '1976', 'duration': '2h', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0075148/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef7')}
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0079470/?ref_=adv_li_tt>
+{'title': "Monty Python's Life of Brian\xa0", 'year': '1979', 'duration': '1h 34min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0079470/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef8')}
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0080678/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0077416/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:52 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0080678/?ref_=adv_li_tt>
+{'title': 'The Elephant Man\xa0', 'year': '1980', 'duration': '2h 4min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0080678/?ref_=adv_li_tt', '_id': ObjectId('5edb55e0d861b9b16e15fef9')}
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0077416/?ref_=adv_li_tt>
+{'title': 'The Deer Hunter\xa0', 'year': '1978', 'duration': '3h 3min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0077416/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15fefa')}
+2020-06-06 12:37:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0083658/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0083658/?ref_=adv_li_tt>
+{'title': 'Blade Runner\xa0', 'year': '1982', 'duration': '1h 57min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0083658/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15fefb')}
+2020-06-06 12:37:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0091763/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0083922/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0091763/?ref_=adv_li_tt>
+{'title': 'Platoon\xa0', 'year': '1986', 'duration': '2h', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0091763/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15fefc')}
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0083922/?ref_=adv_li_tt>
+{'title': 'Fanny and Alexander\xa0', 'year': '1982', 'duration': '3h 8min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0083922/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15fefd')}
+2020-06-06 12:37:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0087884/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0092005/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0087884/?ref_=adv_li_tt>
+{'title': 'Paris, Texas\xa0', 'year': '1984', 'duration': '2h 25min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0087884/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15fefe')}
+2020-06-06 12:37:53 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0092005/?ref_=adv_li_tt>
+{'title': 'Stand by Me\xa0', 'year': '1986', 'duration': '1h 29min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0092005/?ref_=adv_li_tt', '_id': ObjectId('5edb55e1d861b9b16e15feff')}
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0107207/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0093779/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0097165/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0107207/?ref_=adv_li_tt>
+{'title': 'In the Name of the Father\xa0', 'year': '1993', 'duration': '2h 13min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0107207/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff00')}
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0093779/?ref_=adv_li_tt>
+{'title': 'The Princess Bride\xa0', 'year': '1987', 'duration': '1h 38min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0093779/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff01')}
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0097165/?ref_=adv_li_tt>
+{'title': 'Dead Poets Society\xa0', 'year': '1989', 'duration': '2h 8min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0097165/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff02')}
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0112471/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0107290/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0112471/?ref_=adv_li_tt>
+{'title': 'Before Sunrise\xa0', 'year': '1995', 'duration': '1h 41min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0112471/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff03')}
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0107290/?ref_=adv_li_tt>
+{'title': 'Jurassic Park\xa0', 'year': '1993', 'duration': '2h 7min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0107290/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff04')}
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0116282/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0111495/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:54 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0116282/?ref_=adv_li_tt>
+{'title': 'Fargo\xa0', 'year': '1996', 'duration': '1h 38min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0116282/?ref_=adv_li_tt', '_id': ObjectId('5edb55e2d861b9b16e15ff05')}
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0111495/?ref_=adv_li_tt>
+{'title': 'Three Colors: Red\xa0', 'year': '1994', 'duration': '1h 39min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0111495/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff06')}
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0117951/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0118715/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0117951/?ref_=adv_li_tt>
+{'title': 'Trainspotting\xa0', 'year': '1996', 'duration': '1h 33min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0117951/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff07')}
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0113247/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0118715/?ref_=adv_li_tt>
+{'title': 'The Big Lebowski\xa0', 'year': '1998', 'duration': '1h 57min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0118715/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff08')}
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0118694/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0113247/?ref_=adv_li_tt>
+{'title': 'La Haine\xa0', 'year': '1995', 'duration': '1h 38min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0113247/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff09')}
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0118694/?ref_=adv_li_tt>
+{'title': 'In the Mood for Love\xa0', 'year': '2000', 'duration': '1h 38min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0118694/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff0a')}
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120382/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0167404/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120382/?ref_=adv_li_tt>
+{'title': 'The Truman Show\xa0', 'year': '1998', 'duration': '1h 43min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0120382/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff0b')}
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0167404/?ref_=adv_li_tt>
+{'title': 'The Sixth Sense\xa0', 'year': '1999', 'duration': '1h 47min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0167404/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff0c')}
+2020-06-06 12:37:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0245712/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:55 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0245712/?ref_=adv_li_tt>
+{'title': 'Amores Perros\xa0', 'year': '2000', 'duration': '2h 34min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0245712/?ref_=adv_li_tt', '_id': ObjectId('5edb55e3d861b9b16e15ff0d')}
+2020-06-06 12:37:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0264464/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0266543/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=201&ref_=adv_nxt)
+2020-06-06 12:37:56 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0264464/?ref_=adv_li_tt>
+{'title': 'Catch Me If You Can\xa0', 'year': '2002', 'duration': '2h 21min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0264464/?ref_=adv_li_tt', '_id': ObjectId('5edb55e4d861b9b16e15ff0e')}
+2020-06-06 12:37:56 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0266543/?ref_=adv_li_tt>
+{'title': 'Finding Nemo\xa0', 'year': '2003', 'duration': '1h 40min', 'genre': 'Animation', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt0266543/?ref_=adv_li_tt', '_id': ObjectId('5edb55e4d861b9b16e15ff0f')}
+2020-06-06 12:37:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2024544/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2119532/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:56 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2024544/?ref_=adv_li_tt>
+{'title': '12 Years a Slave\xa0', 'year': '2013', 'duration': '2h 14min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2024544/?ref_=adv_li_tt', '_id': ObjectId('5edb55e4d861b9b16e15ff10')}
+2020-06-06 12:37:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2096673/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:56 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2119532/?ref_=adv_li_tt>
+{'title': 'Hacksaw Ridge\xa0', 'year': '2016', 'duration': '2h 19min', 'genre': 'Biography', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2119532/?ref_=adv_li_tt', '_id': ObjectId('5edb55e4d861b9b16e15ff11')}
+2020-06-06 12:37:56 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2096673/?ref_=adv_li_tt>
+{'title': 'Inside Out\xa0', 'year': '2015', 'duration': '1h 35min', 'genre': 'Animation', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2096673/?ref_=adv_li_tt', '_id': ObjectId('5edb55e4d861b9b16e15ff12')}
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2758880/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2267998/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2758880/?ref_=adv_li_tt>
+{'title': 'Winter Sleep\xa0', 'year': '2014', 'duration': '3h 16min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2758880/?ref_=adv_li_tt', '_id': ObjectId('5edb55e5d861b9b16e15ff13')}
+2020-06-06 12:37:57 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2267998/?ref_=adv_li_tt>
+{'title': 'Gone Girl\xa0', 'year': '2014', 'duration': '2h 29min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2267998/?ref_=adv_li_tt', '_id': ObjectId('5edb55e5d861b9b16e15ff14')}
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt3011894/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt3011894/?ref_=adv_li_tt>
+{'title': 'Wild Tales\xa0', 'year': '2014', 'duration': '2h 2min', 'genre': 'Comedy', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt3011894/?ref_=adv_li_tt', '_id': ObjectId('5edb55e5d861b9b16e15ff15')}
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4016934/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2278388/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4016934/?ref_=adv_li_tt>
+{'title': 'The Handmaiden\xa0', 'year': '2016', 'duration': '2h 25min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt4016934/?ref_=adv_li_tt', '_id': ObjectId('5edb55e5d861b9b16e15ff16')}
+2020-06-06 12:37:57 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2278388/?ref_=adv_li_tt>
+{'title': 'The Grand Budapest Hotel\xa0', 'year': '2014', 'duration': '1h 39min', 'genre': 'Adventure', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt2278388/?ref_=adv_li_tt', '_id': ObjectId('5edb55e5d861b9b16e15ff17')}
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt3170832/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt3315342/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt3170832/?ref_=adv_li_tt>
+{'title': 'Room\xa0', 'year': '2015', 'duration': '1h 58min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt3170832/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff18')}
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt3315342/?ref_=adv_li_tt>
+{'title': 'Logan\xa0', 'year': '2017', 'duration': '2h 17min', 'genre': 'Action', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt3315342/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff19')}
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt8613070/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4857264/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0015324/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt8613070/?ref_=adv_li_tt>
+{'title': 'Portrait of a Lady on Fire\xa0', 'year': '2019', 'duration': '2h 2min', 'genre': 'Drama', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt8613070/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff1a')}
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4857264/?ref_=adv_li_tt>
+{'title': 'The Invisible Guest\xa0', 'year': '2016', 'duration': '1h 46min', 'genre': 'Crime', 'rating': '8.1', 'movie_url': 'https://www.imdb.com/title/tt4857264/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff1b')}
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0015324/?ref_=adv_li_tt>
+{'title': 'Sherlock Jr.\xa0', 'year': '1924', 'duration': '45min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0015324/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff1c')}
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0040897/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0035446/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0040897/?ref_=adv_li_tt>
+{'title': 'The Treasure of the Sierra Madre\xa0', 'year': '1948', 'duration': '2h 6min', 'genre': 'Adventure', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0040897/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff1d')}
+2020-06-06 12:37:58 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0035446/?ref_=adv_li_tt>
+{'title': 'To Be or Not to Be\xa0', 'year': '1942', 'duration': '1h 39min', 'genre': 'Comedy', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0035446/?ref_=adv_li_tt', '_id': ObjectId('5edb55e6d861b9b16e15ff1e')}
+2020-06-06 12:37:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0042192/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0042192/?ref_=adv_li_tt>
+{'title': 'All About Eve\xa0', 'year': '1950', 'duration': '2h 18min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0042192/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff1f')}
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0015864/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0042876/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0046438/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0015864/?ref_=adv_li_tt>
+{'title': 'The Gold Rush\xa0', 'year': '1925', 'duration': '1h 35min', 'genre': 'Adventure', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0015864/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff20')}
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0042876/?ref_=adv_li_tt>
+{'title': 'Rashomon\xa0', 'year': '1950', 'duration': '1h 28min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0042876/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff21')}
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0050976/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0046912/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0046438/?ref_=adv_li_tt>
+{'title': 'Tokyo Story\xa0', 'year': '1953', 'duration': '2h 16min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0046438/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff22')}
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0050976/?ref_=adv_li_tt>
+{'title': 'The Seventh Seal\xa0', 'year': '1957', 'duration': '1h 36min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0050976/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff23')}
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0046912/?ref_=adv_li_tt>
+{'title': 'Dial M for Murder\xa0', 'year': '1954', 'duration': '1h 45min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0046912/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff24')}
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0050986/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0055031/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:37:59 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0050986/?ref_=adv_li_tt>
+{'title': 'Wild Strawberries\xa0', 'year': '1957', 'duration': '1h 31min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0050986/?ref_=adv_li_tt', '_id': ObjectId('5edb55e7d861b9b16e15ff25')}
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0055031/?ref_=adv_li_tt>
+{'title': 'Judgment at Nuremberg\xa0', 'year': '1961', 'duration': '2h 59min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0055031/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff26')}
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0053291/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0053291/?ref_=adv_li_tt>
+{'title': 'Some Like It Hot\xa0', 'year': '1959', 'duration': '2h 1min', 'genre': 'Comedy', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0053291/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff27')}
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0057115/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0071853/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0056592/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0055630/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0057115/?ref_=adv_li_tt>
+{'title': 'The Great Escape\xa0', 'year': '1963', 'duration': '2h 52min', 'genre': 'Adventure', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0057115/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff28')}
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0071853/?ref_=adv_li_tt>
+{'title': 'Monty Python and the Holy Grail\xa0', 'year': '1975', 'duration': '1h 31min', 'genre': 'Adventure', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0071853/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff29')}
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0056592/?ref_=adv_li_tt>
+{'title': 'To Kill a Mockingbird\xa0', 'year': '1962', 'duration': '2h 9min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0056592/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff2a')}
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0071315/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0055630/?ref_=adv_li_tt>
+{'title': 'Yojimbo\xa0', 'year': '1961', 'duration': '1h 50min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0055630/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff2b')}
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0071315/?ref_=adv_li_tt>
+{'title': 'Chinatown\xa0', 'year': '1974', 'duration': '2h 10min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0071315/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff2c')}
+2020-06-06 12:38:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0079944/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:00 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0079944/?ref_=adv_li_tt>
+{'title': 'Stalker\xa0', 'year': '1979', 'duration': '2h 42min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0079944/?ref_=adv_li_tt', '_id': ObjectId('5edb55e8d861b9b16e15ff2d')}
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0089881/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0089881/?ref_=adv_li_tt>
+{'title': 'Ran\xa0', 'year': '1985', 'duration': '2h 42min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0089881/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff2e')}
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0469494/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0457430/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0434409/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0081398/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0469494/?ref_=adv_li_tt>
+{'title': 'There Will Be Blood\xa0', 'year': '2007', 'duration': '2h 38min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0469494/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff2f')}
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0457430/?ref_=adv_li_tt>
+{'title': "Pan's Labyrinth\xa0", 'year': '2006', 'duration': '1h 58min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0457430/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff30')}
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0434409/?ref_=adv_li_tt>
+{'title': 'V for Vendetta\xa0', 'year': '2005', 'duration': '2h 12min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0434409/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff31')}
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0993846/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0081398/?ref_=adv_li_tt>
+{'title': 'Raging Bull\xa0', 'year': '1980', 'duration': '2h 9min', 'genre': 'Biography', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0081398/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff32')}
+2020-06-06 12:38:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0993846/?ref_=adv_li_tt>
+{'title': 'The Wolf of Wall Street\xa0', 'year': '2013', 'duration': '3h', 'genre': 'Biography', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0993846/?ref_=adv_li_tt', '_id': ObjectId('5edb55e9d861b9b16e15ff33')}
+2020-06-06 12:38:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0095016/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=151&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0095016/?ref_=adv_li_tt>
+{'title': 'Die Hard\xa0', 'year': '1988', 'duration': '2h 12min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt0095016/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff34')}
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1049413/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1049413/?ref_=adv_li_tt>
+{'title': 'Up\xa0', 'year': '2009', 'duration': '1h 36min', 'genre': 'Animation', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt1049413/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff35')}
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1291584/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1305806/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1291584/?ref_=adv_li_tt>
+{'title': 'Warrior\xa0', 'year': '2011', 'duration': '2h 20min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt1291584/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff36')}
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4430212/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1305806/?ref_=adv_li_tt>
+{'title': 'The Secret in Their Eyes\xa0', 'year': '2009', 'duration': '2h 9min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt1305806/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff37')}
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1954470/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4430212/?ref_=adv_li_tt>
+{'title': 'Drishyam\xa0', 'year': '2015', 'duration': '2h 43min', 'genre': 'Crime', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt4430212/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff38')}
+2020-06-06 12:38:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4729430/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1954470/?ref_=adv_li_tt>
+{'title': 'Gangs of Wasseypur\xa0', 'year': '2012', 'duration': '5h 21min', 'genre': 'Action', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt1954470/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff39')}
+2020-06-06 12:38:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4729430/?ref_=adv_li_tt>
+{'title': 'Klaus\xa0', 'year': '2019', 'duration': '1h 36min', 'genre': 'Animation', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt4729430/?ref_=adv_li_tt', '_id': ObjectId('5edb55ead861b9b16e15ff3a')}
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2991224/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt5027774/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2991224/?ref_=adv_li_tt>
+{'title': 'Tangerines\xa0', 'year': '2013', 'duration': '1h 27min', 'genre': 'Drama', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt2991224/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff3b')}
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt5027774/?ref_=adv_li_tt>
+{'title': 'Three Billboards Outside Ebbing, Missouri\xa0', 'year': '2017', 'duration': '1h 55min', 'genre': 'Comedy', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt5027774/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff3c')}
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt6966692/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0017136/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0033467/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0012349/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt6966692/?ref_=adv_li_tt>
+{'title': 'Green Book\xa0', 'year': '2018', 'duration': '2h 10min', 'genre': 'Biography', 'rating': '8.2', 'movie_url': 'https://www.imdb.com/title/tt6966692/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff3d')}
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0036775/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0022100/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0017136/?ref_=adv_li_tt>
+{'title': 'Metropolis\xa0', 'year': '1927', 'duration': '2h 33min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0017136/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff3e')}
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0033467/?ref_=adv_li_tt>
+{'title': 'Citizen Kane\xa0', 'year': '1941', 'duration': '1h 59min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0033467/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff3f')}
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0012349/?ref_=adv_li_tt>
+{'title': 'The Kid\xa0', 'year': '1921', 'duration': '1h 8min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0012349/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff40')}
+2020-06-06 12:38:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0036775/?ref_=adv_li_tt>
+{'title': 'Double Indemnity\xa0', 'year': '1944', 'duration': '1h 47min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0036775/?ref_=adv_li_tt', '_id': ObjectId('5edb55ebd861b9b16e15ff41')}
+2020-06-06 12:38:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0022100/?ref_=adv_li_tt>
+{'title': 'M\xa0', 'year': '1931', 'duration': '1h 39min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0022100/?ref_=adv_li_tt', '_id': ObjectId('5edb55ecd861b9b16e15ff42')}
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0044741/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0044741/?ref_=adv_li_tt>
+{'title': 'Ikiru\xa0', 'year': '1952', 'duration': '2h 23min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0044741/?ref_=adv_li_tt', '_id': ObjectId('5edb55ecd861b9b16e15ff43')}
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0045152/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0052357/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0040522/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0053604/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0045152/?ref_=adv_li_tt>
+{'title': "Singin' in the Rain\xa0", 'year': '1952', 'duration': '1h 43min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0045152/?ref_=adv_li_tt', '_id': ObjectId('5edb55ecd861b9b16e15ff44')}
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0059578/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0052357/?ref_=adv_li_tt>
+{'title': 'Vertigo\xa0', 'year': '1958', 'duration': '2h 8min', 'genre': 'Mystery', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0052357/?ref_=adv_li_tt', '_id': ObjectId('5edb55ecd861b9b16e15ff45')}
+2020-06-06 12:38:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0056172/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0040522/?ref_=adv_li_tt>
+{'title': 'Bicycle Thieves\xa0', 'year': '1948', 'duration': '1h 29min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0040522/?ref_=adv_li_tt', '_id': ObjectId('5edb55ecd861b9b16e15ff46')}
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0053604/?ref_=adv_li_tt>
+{'title': 'The Apartment\xa0', 'year': '1960', 'duration': '2h 5min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0053604/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff47')}
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0059578/?ref_=adv_li_tt>
+{'title': 'For a Few Dollars More\xa0', 'year': '1965', 'duration': '2h 12min', 'genre': 'Western', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0059578/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff48')}
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0056172/?ref_=adv_li_tt>
+{'title': 'Lawrence of Arabia\xa0', 'year': '1962', 'duration': '3h 48min', 'genre': 'Adventure', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0056172/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff49')}
+2020-06-06 12:38:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0062622/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0053125/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0062622/?ref_=adv_li_tt>
+{'title': '2001: A Space Odyssey\xa0', 'year': '1968', 'duration': '2h 29min', 'genre': 'Adventure', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0062622/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff4a')}
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0053125/?ref_=adv_li_tt>
+{'title': 'North by Northwest\xa0', 'year': '1959', 'duration': '2h 16min', 'genre': 'Adventure', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0053125/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff4b')}
+2020-06-06 12:38:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0070735/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0070735/?ref_=adv_li_tt>
+{'title': 'The Sting\xa0', 'year': '1973', 'duration': '2h 9min', 'genre': 'Comedy', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0070735/?ref_=adv_li_tt', '_id': ObjectId('5edb55edd861b9b16e15ff4c')}
+2020-06-06 12:38:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0066921/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0066921/?ref_=adv_li_tt>
+{'title': 'A Clockwork Orange\xa0', 'year': '1971', 'duration': '2h 16min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0066921/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff4d')}
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0075314/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0086190/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0086250/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0082096/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0075314/?ref_=adv_li_tt>
+{'title': 'Taxi Driver\xa0', 'year': '1976', 'duration': '1h 54min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0075314/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff4e')}
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0086190/?ref_=adv_li_tt>
+{'title': 'Star Wars: Episode VI - Return of the Jedi\xa0', 'year': '1983', 'duration': '2h 11min', 'genre': 'Action', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0086190/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff4f')}
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0086879/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0086250/?ref_=adv_li_tt>
+{'title': 'Scarface\xa0', 'year': '1983', 'duration': '2h 50min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0086250/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff50')}
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0082096/?ref_=adv_li_tt>
+{'title': 'Das Boot\xa0', 'year': '1981', 'duration': '2h 29min', 'genre': 'Adventure', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0082096/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff51')}
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0086879/?ref_=adv_li_tt>
+{'title': 'Amadeus\xa0', 'year': '1984', 'duration': '2h 40min', 'genre': 'Biography', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0086879/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff52')}
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0090605/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0091251/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=101&ref_=adv_nxt)
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0090605/?ref_=adv_li_tt>
+{'title': 'Aliens\xa0', 'year': '1986', 'duration': '2h 17min', 'genre': 'Action', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0090605/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff53')}
+2020-06-06 12:38:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0091251/?ref_=adv_li_tt>
+{'title': 'Come and See\xa0', 'year': '1985', 'duration': '2h 22min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt0091251/?ref_=adv_li_tt', '_id': ObjectId('5edb55eed861b9b16e15ff54')}
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1255953/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2106476/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt8108198/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1255953/?ref_=adv_li_tt>
+{'title': 'Incendies\xa0', 'year': '2010', 'duration': '2h 11min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt1255953/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff55')}
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2106476/?ref_=adv_li_tt>
+{'title': 'The Hunt\xa0', 'year': '2012', 'duration': '1h 55min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt2106476/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff56')}
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt8108198/?ref_=adv_li_tt>
+{'title': 'Andhadhun\xa0', 'year': '2018', 'duration': '2h 19min', 'genre': 'Crime', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt8108198/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff57')}
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0032553/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1832382/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0032553/?ref_=adv_li_tt>
+{'title': 'The Great Dictator\xa0', 'year': '1940', 'duration': '2h 5min', 'genre': 'Comedy', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0032553/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff58')}
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1832382/?ref_=adv_li_tt>
+{'title': 'A Separation\xa0', 'year': '2011', 'duration': '2h 3min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt1832382/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff59')}
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0043014/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt8579674/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0043014/?ref_=adv_li_tt>
+{'title': 'Sunset Blvd.\xa0', 'year': '1950', 'duration': '1h 50min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0043014/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff5a')}
+2020-06-06 12:38:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt8579674/?ref_=adv_li_tt>
+{'title': '1917\xa0', 'year': '2019', 'duration': '1h 59min', 'genre': 'Drama', 'rating': '8.3', 'movie_url': 'https://www.imdb.com/title/tt8579674/?ref_=adv_li_tt', '_id': ObjectId('5edb55efd861b9b16e15ff5b')}
+2020-06-06 12:38:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0050825/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0047396/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0050825/?ref_=adv_li_tt>
+{'title': 'Paths of Glory\xa0', 'year': '1957', 'duration': '1h 28min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0050825/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff5c')}
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0051201/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0047396/?ref_=adv_li_tt>
+{'title': 'Rear Window\xa0', 'year': '1954', 'duration': '1h 52min', 'genre': 'Mystery', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0047396/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff5d')}
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0057012/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0051201/?ref_=adv_li_tt>
+{'title': 'Witness for the Prosecution\xa0', 'year': '1957', 'duration': '1h 56min', 'genre': 'Crime', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0051201/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff5e')}
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0057012/?ref_=adv_li_tt>
+{'title': 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb\xa0', 'year': '1964', 'duration': '1h 35min', 'genre': 'Comedy', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0057012/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff5f')}
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0078748/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0078748/?ref_=adv_li_tt>
+{'title': 'Alien\xa0', 'year': '1979', 'duration': '1h 57min', 'genre': 'Horror', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0078748/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff60')}
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0081505/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0078788/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0087843/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0081505/?ref_=adv_li_tt>
+{'title': 'The Shining\xa0', 'year': '1980', 'duration': '2h 26min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0081505/?ref_=adv_li_tt', '_id': ObjectId('5edb55f0d861b9b16e15ff61')}
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0078788/?ref_=adv_li_tt>
+{'title': 'Apocalypse Now\xa0', 'year': '1979', 'duration': '2h 27min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0078788/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff62')}
+2020-06-06 12:38:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0082971/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0087843/?ref_=adv_li_tt>
+{'title': 'Once Upon a Time in America\xa0', 'year': '1984', 'duration': '3h 49min', 'genre': 'Crime', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0087843/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff63')}
+2020-06-06 12:38:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0119698/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0209144/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0082971/?ref_=adv_li_tt>
+{'title': 'Raiders of the Lost Ark\xa0', 'year': '1981', 'duration': '1h 55min', 'genre': 'Action', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0082971/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff64')}
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0119698/?ref_=adv_li_tt>
+{'title': 'Princess Mononoke\xa0', 'year': '1997', 'duration': '2h 14min', 'genre': 'Animation', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0119698/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff65')}
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0209144/?ref_=adv_li_tt>
+{'title': 'Memento\xa0', 'year': '2000', 'duration': '1h 53min', 'genre': 'Mystery', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0209144/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff66')}
+2020-06-06 12:38:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0364569/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0405094/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0364569/?ref_=adv_li_tt>
+{'title': 'Oldboy\xa0', 'year': '2003', 'duration': '2h', 'genre': 'Action', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0364569/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff67')}
+2020-06-06 12:38:09 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0405094/?ref_=adv_li_tt>
+{'title': 'The Lives of Others\xa0', 'year': '2006', 'duration': '2h 17min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0405094/?ref_=adv_li_tt', '_id': ObjectId('5edb55f1d861b9b16e15ff68')}
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0910970/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1187043/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0910970/?ref_=adv_li_tt>
+{'title': 'WALL·E\xa0', 'year': '2008', 'duration': '1h 38min', 'genre': 'Animation', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0910970/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff69')}
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0986264/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1187043/?ref_=adv_li_tt>
+{'title': '3 Idiots\xa0', 'year': '2009', 'duration': '2h 50min', 'genre': 'Comedy', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt1187043/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff6a')}
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0986264/?ref_=adv_li_tt>
+{'title': 'Like Stars on Earth\xa0', 'year': '2007', 'duration': '2h 45min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt0986264/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff6b')}
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1345836/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt1853728/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1345836/?ref_=adv_li_tt>
+{'title': 'The Dark Knight Rises\xa0', 'year': '2012', 'duration': '2h 44min', 'genre': 'Action', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt1345836/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff6c')}
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt1853728/?ref_=adv_li_tt>
+{'title': 'Django Unchained\xa0', 'year': '2012', 'duration': '2h 45min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt1853728/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff6d')}
+2020-06-06 12:38:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt2380307/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:10 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt2380307/?ref_=adv_li_tt>
+{'title': 'Coco\xa0', 'year': '2017', 'duration': '1h 45min', 'genre': 'Animation', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt2380307/?ref_=adv_li_tt', '_id': ObjectId('5edb55f2d861b9b16e15ff6e')}
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt5074352/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4633694/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt5074352/?ref_=adv_li_tt>
+{'title': 'Dangal\xa0', 'year': '2016', 'duration': '2h 41min', 'genre': 'Action', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt5074352/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff6f')}
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt5311514/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4633694/?ref_=adv_li_tt>
+{'title': 'Spider-Man: Into the Spider-Verse\xa0', 'year': '2018', 'duration': '1h 57min', 'genre': 'Animation', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt4633694/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff70')}
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0021749/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0027977/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt5311514/?ref_=adv_li_tt>
+{'title': 'Your Name.\xa0', 'year': '2016', 'duration': '1h 46min', 'genre': 'Animation', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt5311514/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff71')}
+2020-06-06 12:38:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt8267604/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0021749/?ref_=adv_li_tt>
+{'title': 'City Lights\xa0', 'year': '1931', 'duration': '1h 27min', 'genre': 'Comedy', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0021749/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff72')}
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0027977/?ref_=adv_li_tt>
+{'title': 'Modern Times\xa0', 'year': '1936', 'duration': '1h 27min', 'genre': 'Comedy', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0027977/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff73')}
+2020-06-06 12:38:11 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt8267604/?ref_=adv_li_tt>
+{'title': 'Capernaum\xa0', 'year': '2018', 'duration': '2h 6min', 'genre': 'Drama', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt8267604/?ref_=adv_li_tt', '_id': ObjectId('5edb55f3d861b9b16e15ff74')}
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0054215/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0054215/?ref_=adv_li_tt>
+{'title': 'Psycho\xa0', 'year': '1960', 'duration': '1h 49min', 'genre': 'Horror', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0054215/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff75')}
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4154796/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0034583/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=51&ref_=adv_nxt)
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0066763/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0047478/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4154796/?ref_=adv_li_tt>
+{'title': 'Avengers: Endgame\xa0', 'year': '2019', 'duration': '3h 1min', 'genre': 'Action', 'rating': '8.4', 'movie_url': 'https://www.imdb.com/title/tt4154796/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff76')}
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0034583/?ref_=adv_li_tt>
+{'title': 'Casablanca\xa0', 'year': '1942', 'duration': '1h 42min', 'genre': 'Drama', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt0034583/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff77')}
+2020-06-06 12:38:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0038650/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0066763/?ref_=adv_li_tt>
+{'title': 'Anand\xa0', 'year': '1971', 'duration': '2h 2min', 'genre': 'Drama', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0066763/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff78')}
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0047478/?ref_=adv_li_tt>
+{'title': 'Seven Samurai\xa0', 'year': '1954', 'duration': '3h 27min', 'genre': 'Action', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0047478/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff79')}
+2020-06-06 12:38:12 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0038650/?ref_=adv_li_tt>
+{'title': "It's a Wonderful Life\xa0", 'year': '1946', 'duration': '2h 10min', 'genre': 'Drama', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0038650/?ref_=adv_li_tt', '_id': ObjectId('5edb55f4d861b9b16e15ff7a')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt7286456/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt7286456/?ref_=adv_li_tt>
+{'title': 'Joker\xa0', 'year': '2019', 'duration': '2h 2min', 'genre': 'Crime', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt7286456/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff7b')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0114369/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0102926/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0118799/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0114369/?ref_=adv_li_tt>
+{'title': 'Se7en\xa0', 'year': '1995', 'duration': '2h 7min', 'genre': 'Crime', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0114369/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff7c')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120689/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0102926/?ref_=adv_li_tt>
+{'title': 'The Silence of the Lambs\xa0', 'year': '1991', 'duration': '1h 58min', 'genre': 'Crime', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0102926/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff7d')}
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0118799/?ref_=adv_li_tt>
+{'title': 'Life Is Beautiful\xa0', 'year': '1997', 'duration': '1h 56min', 'genre': 'Comedy', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0118799/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff7e')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0076759/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120689/?ref_=adv_li_tt>
+{'title': 'The Green Mile\xa0', 'year': '1999', 'duration': '3h 9min', 'genre': 'Crime', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0120689/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff7f')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0120815/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0076759/?ref_=adv_li_tt>
+{'title': 'Star Wars: Episode IV - A New Hope\xa0', 'year': '1977', 'duration': '2h 1min', 'genre': 'Action', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0076759/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff80')}
+2020-06-06 12:38:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt4154756/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0120815/?ref_=adv_li_tt>
+{'title': 'Saving Private Ryan\xa0', 'year': '1998', 'duration': '2h 49min', 'genre': 'Drama', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0120815/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff81')}
+2020-06-06 12:38:13 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt4154756/?ref_=adv_li_tt>
+{'title': 'Avengers: Infinity War\xa0', 'year': '2018', 'duration': '2h 29min', 'genre': 'Action', 'rating': '8.5', 'movie_url': 'https://www.imdb.com/title/tt4154756/?ref_=adv_li_tt', '_id': ObjectId('5edb55f5d861b9b16e15ff82')}
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0245429/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0245429/?ref_=adv_li_tt>
+{'title': 'Spirited Away\xa0', 'year': '2001', 'duration': '2h 5min', 'genre': 'Animation', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0245429/?ref_=adv_li_tt', '_id': ObjectId('5edb55f6d861b9b16e15ff83')}
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0317248/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0317248/?ref_=adv_li_tt>
+{'title': 'City of God\xa0', 'year': '2002', 'duration': '2h 10min', 'genre': 'Crime', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0317248/?ref_=adv_li_tt', '_id': ObjectId('5edb55f6d861b9b16e15ff84')}
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0816692/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0056058/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt6751668/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0068646/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0816692/?ref_=adv_li_tt>
+{'title': 'Interstellar\xa0', 'year': '2014', 'duration': '2h 49min', 'genre': 'Adventure', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt0816692/?ref_=adv_li_tt', '_id': ObjectId('5edb55f6d861b9b16e15ff85')}
+2020-06-06 12:38:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0056058/?ref_=adv_li_tt>
+{'title': 'Harakiri\xa0', 'year': '1962', 'duration': '2h 13min', 'genre': 'Action', 'rating': '8.7', 'movie_url': 'https://www.imdb.com/title/tt0056058/?ref_=adv_li_tt', '_id': ObjectId('5edb55f6d861b9b16e15ff86')}
+2020-06-06 12:38:14 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt6751668/?ref_=adv_li_tt>
+{'title': 'Parasite\xa0', 'year': '2019', 'duration': '2h 12min', 'genre': 'Comedy', 'rating': '8.6', 'movie_url': 'https://www.imdb.com/title/tt6751668/?ref_=adv_li_tt', '_id': ObjectId('5edb55f6d861b9b16e15ff87')}
+2020-06-06 12:38:15 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0068646/?ref_=adv_li_tt>
+{'title': 'The Godfather\xa0', 'year': '1972', 'duration': '2h 55min', 'genre': 'Crime', 'rating': '9.2', 'movie_url': 'https://www.imdb.com/title/tt0068646/?ref_=adv_li_tt', '_id': ObjectId('5edb55f7d861b9b16e15ff88')}
+2020-06-06 12:38:15 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.imdb.com/title/tt0468569/?ref_=adv_li_tt> (referer: https://www.imdb.com/search/title/?groups=top_250&sort=user_rating)
+2020-06-06 12:38:15 [scrapy.core.scraper] DEBUG: Scraped from <200 https://www.imdb.com/title/tt0468569/?ref_=adv_li_tt>
+{'title': 'The Dark Knight\xa0', 'year': '2008', 'duration': '2h 32min', 'genre': 'Action', 'rating': '9.0', 'movie_url': 'https://www.imdb.com/title/tt0468569/?ref_=adv_li_tt', '_id': ObjectId('5edb55f7d861b9b16e15ff89')}
+2020-06-06 12:38:15 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-06-06 12:38:15 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 226079,
+ 'downloader/request_count': 256,
+ 'downloader/request_method_count/GET': 256,
+ 'downloader/response_bytes': 18592568,
+ 'downloader/response_count': 256,
+ 'downloader/response_status_count/200': 256,
+ 'elapsed_time_seconds': 179.460036,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 6, 6, 8, 38, 15, 237858),
+ 'item_scraped_count': 246,
+ 'log_count/DEBUG': 502,
+ 'log_count/ERROR': 4,
+ 'log_count/INFO': 12,
+ 'log_count/WARNING': 1,
+ 'memusage/max': 104062976,
+ 'memusage/startup': 61890560,
+ 'request_depth_max': 5,
+ 'response_received_count': 256,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 255,
+ 'scheduler/dequeued/memory': 255,
+ 'scheduler/enqueued': 255,
+ 'scheduler/enqueued/memory': 255,
+ 'start_time': datetime.datetime(2020, 6, 6, 8, 35, 15, 777822)}
+2020-06-06 12:38:15 [scrapy.core.engine] INFO: Spider closed (finished)

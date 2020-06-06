@@ -1,0 +1,6 @@
+__pycache__/
+
+build/
+dbs/
+eggs/
+project.egg-info/
