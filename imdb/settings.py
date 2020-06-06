@@ -91,5 +91,5 @@ ITEM_PIPELINES = {
 
 FEED_EXPORT_ENCODING = 'utf-8'
 
-MONGO_URI = 'mongodb://heroku_mlk93zl5:63me1jsinb53f3egfmeo04tndp@ds113870.mlab.com:13870/heroku_mlk93zl5'
+MONGO_URI = 'mongodb://heroku_mlk93zl5:63me1jsinb53f3egfmeo04tndp@ds113870.mlab.com:13870/heroku_mlk93zl5?retryWrites=false'
 MONGO_DB = 'heroku_mlk93zl5'
